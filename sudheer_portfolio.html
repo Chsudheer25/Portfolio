@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chennapatnam Sudheer — Data Analyst</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0d0f10;
+    --surface: #141618;
+    --surface2: #1c1f21;
+    --border: rgba(255,255,255,0.07);
+    --border2: rgba(255,255,255,0.12);
+    --teal: #1fcfaa;
+    --teal-dim: #0f8c72;
+    --amber: #f5a623;
+    --text: #f0ede8;
+    --muted: #7a7f84;
+    --muted2: #9ea4aa;
+    --font-display: 'Syne', sans-serif;
+    --font-body: 'DM Sans', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.25rem 4rem;
+    background: rgba(13,15,16,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 0.5px solid var(--border);
+  }
+  .nav-logo {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 1.1rem;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--teal); }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--muted2);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--teal); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 8rem 4rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -100px; right: -100px;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(31,207,170,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-content { max-width: 580px; }
+  .hero-tag {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 12px; font-weight: 500; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--teal);
+    margin-bottom: 1.5rem;
+  }
+  .hero-tag::before {
+    content: '';
+    display: inline-block;
+    width: 24px; height: 1.5px;
+    background: var(--teal);
+  }
+  h1 {
+    font-family: var(--font-display);
+    font-size: clamp(2.8rem, 5vw, 4.5rem);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    color: var(--text);
+    margin-bottom: 1.25rem;
+  }
+  h1 em {
+    font-style: normal;
+    color: var(--teal);
+  }
+  .hero-desc {
+    font-size: 17px;
+    font-weight: 300;
+    color: var(--muted2);
+    line-height: 1.75;
+    max-width: 480px;
+    margin-bottom: 2.5rem;
+  }
+  .hero-cta {
+    display: flex; gap: 1rem; flex-wrap: wrap;
+  }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 0.75rem 1.75rem;
+    font-family: var(--font-body);
+    font-size: 14px; font-weight: 500;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: all 0.2s;
+    cursor: pointer;
+    border: none;
+  }
+  .btn-primary {
+    background: var(--teal);
+    color: #0d0f10;
+  }
+  .btn-primary:hover { background: #2de0b9; transform: translateY(-1px); }
+  .btn-ghost {
+    background: transparent;
+    color: var(--muted2);
+    border: 0.5px solid var(--border2);
+  }
+  .btn-ghost:hover { border-color: var(--teal); color: var(--teal); }
+
+  .hero-stats {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    border: 0.5px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    background: var(--border);
+    align-self: center;
+  }
+  .stat {
+    background: var(--surface);
+    padding: 2rem 1.5rem;
+    text-align: center;
+  }
+  .stat-num {
+    font-family: var(--font-display);
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--teal);
+    display: block;
+    letter-spacing: -0.03em;
+  }
+  .stat-label {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-top: 4px;
+  }
+
+  /* SECTION SHARED */
+  section { padding: 6rem 4rem; }
+  .section-header { margin-bottom: 3.5rem; }
+  .section-num {
+    font-size: 11px; font-weight: 500; letter-spacing: 0.15em;
+    color: var(--teal); text-transform: uppercase;
+    display: block; margin-bottom: 0.5rem;
+  }
+  h2 {
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 3vw, 2.6rem);
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    color: var(--text);
+    line-height: 1.2;
+  }
+  h3 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.2rem;
+    letter-spacing: -0.02em;
+    color: var(--text);
+  }
+
+  /* SKILLS */
+  #skills { background: var(--surface); border-top: 0.5px solid var(--border); border-bottom: 0.5px solid var(--border); }
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 0.5px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .skill-card {
+    background: var(--surface2);
+    padding: 1.75rem;
+    transition: background 0.2s;
+  }
+  .skill-card:hover { background: #232729; }
+  .skill-icon {
+    width: 36px; height: 36px;
+    border-radius: 6px;
+    background: rgba(31,207,170,0.1);
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 1rem;
+    font-size: 18px;
+  }
+  .skill-card h3 { font-size: 13px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted2); margin-bottom: 0.75rem; font-weight: 500; font-family: var(--font-body); }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .tag {
+    font-size: 12px; font-weight: 500;
+    padding: 4px 10px;
+    border-radius: 3px;
+    border: 0.5px solid var(--border2);
+    color: var(--muted2);
+    background: rgba(255,255,255,0.03);
+  }
+  .tag.accent {
+    color: var(--teal);
+    border-color: rgba(31,207,170,0.3);
+    background: rgba(31,207,170,0.05);
+  }
+
+  /* EXPERIENCE */
+  .exp-item {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 3rem;
+    padding: 2.5rem 0;
+    border-bottom: 0.5px solid var(--border);
+  }
+  .exp-item:last-child { border-bottom: none; }
+  .exp-meta { }
+  .exp-period {
+    font-size: 12px; font-weight: 500; letter-spacing: 0.06em;
+    color: var(--teal); text-transform: uppercase; margin-bottom: 6px;
+  }
+  .exp-company {
+    font-size: 14px; font-weight: 500; color: var(--muted2);
+  }
+  .exp-type {
+    display: inline-block;
+    font-size: 11px; font-weight: 500; letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--amber);
+    border: 0.5px solid rgba(245,166,35,0.3);
+    background: rgba(245,166,35,0.06);
+    padding: 3px 8px;
+    border-radius: 3px;
+    margin-top: 8px;
+  }
+  .exp-content h3 { margin-bottom: 1rem; font-size: 1.3rem; }
+  .exp-list { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; }
+  .exp-list li {
+    font-size: 15px; font-weight: 300; color: var(--muted2);
+    padding-left: 1.25rem;
+    position: relative;
+  }
+  .exp-list li::before {
+    content: '';
+    position: absolute; left: 0; top: 11px;
+    width: 6px; height: 1.5px;
+    background: var(--teal);
+  }
+  .exp-list li strong { color: var(--text); font-weight: 500; }
+
+  /* PROJECTS */
+  #projects { background: var(--surface); border-top: 0.5px solid var(--border); border-bottom: 0.5px solid var(--border); }
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 0.5px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .project-card {
+    background: var(--surface2);
+    padding: 2.25rem;
+    transition: background 0.2s;
+    display: flex; flex-direction: column;
+  }
+  .project-card:hover { background: #232729; }
+  .project-header {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    margin-bottom: 1.25rem;
+  }
+  .project-date {
+    font-size: 11px; font-weight: 500; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--muted);
+  }
+  .project-card h3 { font-size: 1.15rem; margin-bottom: 0.75rem; }
+  .project-desc {
+    font-size: 14px; font-weight: 300; color: var(--muted2);
+    line-height: 1.7; flex: 1; margin-bottom: 1.5rem;
+  }
+  .project-stack { display: flex; flex-wrap: wrap; gap: 6px; }
+
+  /* CERTS */
+  .certs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 16px;
+  }
+  .cert-card {
+    background: var(--surface);
+    border: 0.5px solid var(--border);
+    border-radius: 8px;
+    padding: 1.75rem;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .cert-card:hover { border-color: rgba(31,207,170,0.3); transform: translateY(-2px); }
+  .cert-issuer {
+    font-size: 11px; font-weight: 500; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--teal);
+    margin-bottom: 0.5rem;
+  }
+  .cert-name {
+    font-family: var(--font-display);
+    font-size: 1rem; font-weight: 600;
+    color: var(--text);
+    line-height: 1.35;
+    margin-bottom: 0.5rem;
+  }
+  .cert-year {
+    font-size: 12px; color: var(--muted);
+  }
+
+  /* CONTACT */
+  #contact { border-top: 0.5px solid var(--border); }
+  .contact-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+  .contact-copy h2 { margin-bottom: 1rem; }
+  .contact-copy p { font-size: 16px; font-weight: 300; color: var(--muted2); max-width: 420px; }
+  .contact-links { display: flex; flex-direction: column; gap: 16px; margin-top: 2rem; }
+  .contact-link {
+    display: flex; align-items: center; gap: 14px;
+    text-decoration: none;
+    padding: 1rem 1.25rem;
+    background: var(--surface);
+    border: 0.5px solid var(--border);
+    border-radius: 6px;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .contact-link:hover { border-color: rgba(31,207,170,0.3); background: var(--surface2); }
+  .contact-link-icon {
+    width: 36px; height: 36px;
+    background: rgba(31,207,170,0.08);
+    border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px; color: var(--teal);
+    flex-shrink: 0;
+  }
+  .contact-link-text { flex: 1; }
+  .contact-link-label { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; }
+  .contact-link-val { font-size: 14px; font-weight: 500; color: var(--text); }
+
+  /* FOOTER */
+  footer {
+    padding: 2rem 4rem;
+    border-top: 0.5px solid var(--border);
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .footer-name {
+    font-family: var(--font-display);
+    font-size: 14px; font-weight: 700;
+    color: var(--muted);
+    letter-spacing: -0.01em;
+  }
+  .footer-copy { font-size: 12px; color: var(--muted); }
+
+  /* SCROLL ANIMATIONS */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .fade-in.visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  @media (max-width: 900px) {
+    nav { padding: 1rem 2rem; }
+    .hero { grid-template-columns: 1fr; padding: 7rem 2rem 3rem; gap: 3rem; }
+    .hero-stats { grid-template-columns: repeat(3, 1fr); }
+    section { padding: 4rem 2rem; }
+    .exp-item { grid-template-columns: 1fr; gap: 1rem; }
+    .projects-grid { grid-template-columns: 1fr; }
+    .contact-inner { grid-template-columns: 1fr; gap: 2rem; }
+    footer { padding: 1.5rem 2rem; flex-direction: column; gap: 8px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="#">CS<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#certs">Certifications</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <span class="hero-tag">Data Analyst · Bengaluru, India</span>
+    <h1>Turning data into<br><em>decisions.</em></h1>
+    <p class="hero-desc">
+      Motivated data analyst proficient in Python, SQL, and cloud-based BI tools. Skilled at transforming raw datasets into compelling dashboards and actionable insights that drive real business outcomes.
+    </p>
+    <div class="hero-cta">
+      <a href="mailto:chennapatnamsudheer25@gmail.com" class="btn btn-primary">Get in touch</a>
+      <a href="https://www.linkedin.com/in/chennapatnam-sudheer-491934307/" target="_blank" class="btn btn-ghost">LinkedIn ↗</a>
+    </div>
+  </div>
+  <div class="hero-stats fade-in">
+    <div class="stat">
+      <span class="stat-num">4+</span>
+      <div class="stat-label">Certifications</div>
+    </div>
+    <div class="stat">
+      <span class="stat-num">20%</span>
+      <div class="stat-label">Accuracy Gain</div>
+    </div>
+    <div class="stat">
+      <span class="stat-num">2</span>
+      <div class="stat-label">ML Projects</div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-header fade-in">
+    <span class="section-num">01 — Skills</span>
+    <h2>Technical toolkit</h2>
+  </div>
+  <div class="skills-grid fade-in">
+    <div class="skill-card">
+      <div class="skill-icon">⌨</div>
+      <h3>Languages</h3>
+      <div class="skill-tags">
+        <span class="tag accent">Python</span>
+        <span class="tag accent">SQL</span>
+        <span class="tag">R Language</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">📊</div>
+      <h3>Visualization</h3>
+      <div class="skill-tags">
+        <span class="tag accent">Tableau</span>
+        <span class="tag accent">Power BI</span>
+        <span class="tag">Matplotlib</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">🗄</div>
+      <h3>Databases</h3>
+      <div class="skill-tags">
+        <span class="tag accent">MySQL</span>
+        <span class="tag">MongoDB</span>
+        <span class="tag">SQLite</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">🤖</div>
+      <h3>ML / NLP</h3>
+      <div class="skill-tags">
+        <span class="tag">spaCy</span>
+        <span class="tag">NLTK</span>
+        <span class="tag">Transformers</span>
+        <span class="tag">T5 / BART</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">🔧</div>
+      <h3>Frameworks</h3>
+      <div class="skill-tags">
+        <span class="tag">Flask</span>
+        <span class="tag">Django</span>
+        <span class="tag">Pandas</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">🌐</div>
+      <h3>Web & Other</h3>
+      <div class="skill-tags">
+        <span class="tag">HTML</span>
+        <span class="tag">CSS</span>
+        <span class="tag">JavaScript</span>
+        <span class="tag">Excel</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-header fade-in">
+    <span class="section-num">02 — Experience</span>
+    <h2>Where I've worked</h2>
+  </div>
+
+  <div class="exp-item fade-in">
+    <div class="exp-meta">
+      <div class="exp-period">Jul – Aug 2024</div>
+      <div class="exp-company">Main Flow Services</div>
+      <div class="exp-type">Remote · Internship</div>
+    </div>
+    <div class="exp-content">
+      <h3>Data Science Intern</h3>
+      <ul class="exp-list">
+        <li>Developed and deployed machine learning models using Python, improving <strong>predictive accuracy by 20%</strong> and enhancing business insights.</li>
+        <li>Executed complex data analysis and predictive modelling, uncovering actionable trends that led to a <strong>15% increase in operational efficiency</strong>.</li>
+        <li>Collaborated with a cross-functional team to design data-driven solutions, <strong>reducing project turnaround time by 25%</strong> and simplifying processes.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="exp-item fade-in">
+    <div class="exp-meta">
+      <div class="exp-period">Dec 2021 – May 2025</div>
+      <div class="exp-company">SITAMS, Chittoor</div>
+      <div class="exp-type">Education</div>
+    </div>
+    <div class="exp-content">
+      <h3>B.Tech — Computer Science</h3>
+      <ul class="exp-list">
+        <li>Graduated with a <strong>GPA of 7.25</strong> from Sreenivasa Institute of Technology and Management Studies.</li>
+        <li>Gained strong foundations in data structures, databases, and machine learning during coursework.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-header fade-in">
+    <span class="section-num">03 — Projects</span>
+    <h2>Selected work</h2>
+  </div>
+  <div class="projects-grid fade-in">
+    <div class="project-card">
+      <div class="project-header">
+        <div class="project-date">Jan – Jun 2025</div>
+        <div class="tag accent" style="font-size:11px;">NLP · AI</div>
+      </div>
+      <h3>Dynamic Question Paper Generator</h3>
+      <p class="project-desc">
+        AI-powered platform that generates dynamic question papers based on subject, topic, difficulty, and marks distribution. Uses transformer models (T5/BART) for automatic question generation from study material. Features randomized paper generation ensuring balanced topic coverage and uniqueness, with PDF/Word export.
+      </p>
+      <div class="project-stack">
+        <span class="tag">Python</span>
+        <span class="tag">Flask/Django</span>
+        <span class="tag">spaCy</span>
+        <span class="tag">NLTK</span>
+        <span class="tag">Transformers</span>
+        <span class="tag">MySQL</span>
+        <span class="tag">JavaScript</span>
+      </div>
+    </div>
+    <div class="project-card">
+      <div class="project-header">
+        <div class="project-date">Dec 2024</div>
+        <div class="tag accent" style="font-size:11px;">Sports Analytics</div>
+      </div>
+      <h3>Cricket Insights — T20 World Cup</h3>
+      <p class="project-desc">
+        End-to-end sports analytics pipeline to pick the best 11 player combinations for the T20 World Cup 2022. Extracted, cleaned, and transformed data from ESPNcricinfo using Pandas. Built interactive Power BI dashboards visualizing batting and bowling statistics to enable data-driven team selection.
+      </p>
+      <div class="project-stack">
+        <span class="tag">Python</span>
+        <span class="tag">Pandas</span>
+        <span class="tag accent">Power BI</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certs">
+  <div class="section-header fade-in">
+    <span class="section-num">04 — Certifications</span>
+    <h2>Credentials</h2>
+  </div>
+  <div class="certs-grid fade-in">
+    <div class="cert-card">
+      <div class="cert-issuer">Deloitte</div>
+      <div class="cert-name">Data Analytics Job Simulation</div>
+      <div class="cert-year">2025</div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-issuer">Rochester Institute of Technology</div>
+      <div class="cert-name">Data Representation and Visualization in Tableau</div>
+      <div class="cert-year">2023</div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-issuer">HCL</div>
+      <div class="cert-name">Data Visualization: The Art of Storytelling</div>
+      <div class="cert-year">2024</div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-issuer">IIC (Institutions Innovation Council)</div>
+      <div class="cert-name">Data Visualization using Power BI</div>
+      <div class="cert-year">2024</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-inner">
+    <div class="contact-copy fade-in">
+      <span class="section-num">05 — Contact</span>
+      <h2>Let's connect</h2>
+      <p>Open to entry-level Data Analyst opportunities. Feel free to reach out via email or connect on LinkedIn or GitHub.</p>
+    </div>
+    <div class="contact-links fade-in">
+      <a href="mailto:chennapatnamsudheer25@gmail.com" class="contact-link">
+        <div class="contact-link-icon">✉</div>
+        <div class="contact-link-text">
+          <div class="contact-link-label">Email</div>
+          <div class="contact-link-val">chennapatnamsudheer25@gmail.com</div>
+        </div>
+      </a>
+      <a href="https://www.linkedin.com/in/chennapatnam-sudheer-491934307/" target="_blank" class="contact-link">
+        <div class="contact-link-icon">in</div>
+        <div class="contact-link-text">
+          <div class="contact-link-label">LinkedIn</div>
+          <div class="contact-link-val">chennapatnam-sudheer-491934307</div>
+        </div>
+      </a>
+      <a href="https://github.com/Chsudheer25" target="_blank" class="contact-link">
+        <div class="contact-link-icon">⌥</div>
+        <div class="contact-link-text">
+          <div class="contact-link-label">GitHub</div>
+          <div class="contact-link-val">Chsudheer25</div>
+        </div>
+      </a>
+      <a href="tel:+917981082556" class="contact-link">
+        <div class="contact-link-icon">☎</div>
+        <div class="contact-link-text">
+          <div class="contact-link-label">Mobile</div>
+          <div class="contact-link-val">+91 79810 82556</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-name">Chennapatnam Sudheer</div>
+  <div class="footer-copy">Data Analyst · Bengaluru, India · 2025</div>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
